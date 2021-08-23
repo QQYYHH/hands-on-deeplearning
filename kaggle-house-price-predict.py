@@ -3,6 +3,7 @@ import torch.nn as nn
 import numpy as np
 import pandas as pd
 import torch.utils.data as Data
+import torchvision.transforms as transforms
 
 torch.set_default_tensor_type(torch.FloatTensor)
 
@@ -29,6 +30,24 @@ numeric_features_index = all_features.dtypes[all_features.dtypes != 'object'].in
 all_features[numeric_features_index] = all_features[numeric_features_index].apply(
     lambda x: (x - x.mean()) / (x.std())
 )
+
+# 借助 transforms 进行标准化或者其他向量操作
+# train_transform = transforms.Compose([
+#     transforms.Resize((32, 32)),
+#     transforms.RandomCrop(32, padding=4),
+#     transforms.RandomGrayscale(p=0.8),
+#     transforms.ToTensor(),
+#     transforms.Normalize(norm_mean, norm_std),
+# ])
+
+# valid_transform = transforms.Compose([
+#     transforms.Resize((32, 32)),
+#     transforms.ToTensor(),
+#     transforms.Normalize(norm_mean, norm_std),
+])
+
+
+
 # 标准化后，每个数值特征的均值 变为0，所以可以直接用0填充 缺失的特征值
 all_features[numeric_features_index] = all_features[numeric_features_index].fillna(0)
 
