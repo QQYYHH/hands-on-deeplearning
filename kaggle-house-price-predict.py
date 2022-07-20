@@ -89,7 +89,7 @@ def evaluate_log_rmse(net, features, labels):
 
 
 # 模型训练
-# weight_decay：权重衰减系数，越大，权重衰减越大，避免过拟合
+# weight_decay：权重衰减系数，越大，权重衰减越大，避免过拟合，其实是L2正则项
 def train(net, train_features, train_labels, test_features, test_lables, \
     num_epochs, learning_rate, weight_decay, batch_size):
     train_ls, test_ls = [], []
